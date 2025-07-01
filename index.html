@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>故事之声 | 幼儿教师口语专业故事平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Marker Felt', '微软雅黑', sans-serif;
+        }
+        
+        :root {
+            --primary: #4e54c8;
+            --secondary: #8f94fb;
+            --accent: #ff7e5f;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --card-bg: #ffffff;
+            --story-blue: #4e9af1;
+            --story-green: #6ac46a;
+            --story-yellow: #ffd166;
+            --story-pink: #ff9aa2;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 2rem;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="5" fill="%23ff9aa2" opacity="0.1"/><circle cx="50" cy="50" r="7" fill="%234e9af1" opacity="0.1"/><circle cx="80" cy="80" r="4" fill="%236ac46a" opacity="0.1"/></svg>');
+        }
+        
+        header {
+            background: linear-gradient(90deg, var(--story-blue), var(--story-green));
+            color: white;
+            padding: 1rem 5%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--story-yellow);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn-primary {
+            background: var(--story-pink);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #ff7e93;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 126, 95, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--story-blue);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            padding: 5rem 5% 3rem;
+            text-align: center;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="white" opacity="0.1"/><circle cx="20" cy="20" r="3" fill="%234e9af1" opacity="0.1"/><circle cx="50" cy="50" r="5" fill="%236ac46a" opacity="0.1"/><circle cx="80" cy="80" r="7" fill="%23ffd166" opacity="0.1"/></svg>');
+            border-radius: 20px;
+            margin: 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--story-blue), var(--story-green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--dark);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            padding: 0 1.5rem;
+            background: white;
+            position: relative;
+            z-index: 2;
+            color: var(--story-blue);
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--story-blue), transparent);
+            z-index: 1;
+        }
+        
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .story-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid var(--story-yellow);
+        }
+        
+        .story-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .story-img {
+            height: 200px;
+            background: linear-gradient(45deg, var(--story-blue), var(--story-green));
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .story-img .play-btn {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+        
+        .story-img .play-btn i {
+            color: var(--story-blue);
+            font-size: 1.5rem;
+            margin-left: 5px;
+        }
+        
+        .story-img .play-btn:hover {
+            transform: scale(1.1);
+            background: white;
+        }
+        
+        .story-content {
+            padding: 1.5rem;
+        }
+        
+        .story-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--story-blue);
+        }
+        
+        .story-author {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .story-author img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+            border: 2px solid var(--story-yellow);
+        }
+        
+        .story-description {
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            line-height: 1.7;
+            height: 4.5em;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .stars {
+            color: var(--warning);
+            margin-right: 10px;
+        }
+        
+        .rating-value {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .rating-count {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-left: auto;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .btn-light {
+            background: var(--light-gray);
+            color: var(--dark);
+        }
+        
+        .btn-light:hover {
+            background: #dde0e4;
+        }
+        
+        .player {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin: 2rem auto;
+            max-width: 800px;
+            border: 3px solid var(--story-green);
+        }
+        
+        .player-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .player-title {
+            font-size: 1.5rem;
+            color: var(--story-blue);
+        }
+        
+        .player-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .control-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: var(--story-blue);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .control-btn.play-btn {
+            width: 70px;
+            height: 70px;
+            background: var(--story-pink);
+            color: white;
+        }
+        
+        .control-btn.play-btn:hover {
+            background: #ff7e93;
+        }
+        
+        .progress-container {
+            background: var(--light-gray);
+            border-radius: 10px;
+            height: 8px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--story-blue), var(--story-green));
+            width: 30%;
+            border-radius: 10px;
+        }
+        
+        .time-info {
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .rating-section {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin: 2rem auto;
+            max-width: 800px;
+            border: 3px solid var(--story-yellow);
+        }
+        
+        .rating-form {
+            margin-bottom: 2rem;
+        }
+        
+        .rating-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--story-blue);
+        }
+        
+        .star-rating {
+            display: flex;
+            margin-bottom: 1.5rem;
+        }
+        
+        .star {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s;
+            margin-right: 5px;
+        }
+        
+        .star:hover, .star.active {
+            color: var(--warning);
+        }
+        
+        .comment-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            min-height: 120px;
+            margin-bottom: 1rem;
+            resize: vertical;
+            font-size: 1rem;
+        }
+        
+        .comment-form textarea:focus {
+            outline: none;
+            border-color: var(--story-blue);
+        }
+        
+        .comments {
+            margin-top: 2rem;
+        }
+        
+        .comment {
+            border-bottom: 1px solid var(--light-gray);
+            padding: 1.5rem 0;
+        }
+        
+        .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+        
+        .comment-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid var(--story-yellow);
+        }
+        
+        .comment-author {
+            font-weight: 600;
+            color: var(--story-blue);
+        }
+        
+        .comment-time {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-left: auto;
+        }
+        
+        .comment-content {
+            color: var(--dark);
+            line-height: 1.7;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid var(--story-green);
+        }
+        
+        .comment-rating {
+            color: var(--warning);
+            margin-top: 0.5rem;
+        }
+        
+        .upload-section {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin: 2rem auto;
+            max-width: 800px;
+            border: 3px solid var(--story-pink);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--story-blue);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--story-blue);
+        }
+        
+        .file-upload {
+            border: 2px dashed var(--light-gray);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--story-blue);
+            background: rgba(78, 154, 241, 0.03);
+        }
+        
+        .file-upload i {
+            font-size: 3rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        .file-upload p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-box {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid var(--story-green);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--story-blue);
+        }
+        
+        .dubbing-section {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 3px solid var(--story-pink);
+        }
+        
+        .dubbing-box {
+            background: #f0f9ff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .blind-box-section {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 3px solid var(--story-yellow);
+            text-align: center;
+        }
+        
+        .blind-box {
+            background: linear-gradient(135deg, #fff9c4, #ffecb3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem auto;
+            max-width: 600px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .blind-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .blind-box h3 {
+            color: var(--story-blue);
+            margin-bottom: 1rem;
+        }
+        
+        .story-task {
+            display: none;
+            text-align: left;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--story-green);
+        }
+        
+        .story-task h4 {
+            color: var(--story-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .tips-box {
+            background: #e8f5e9;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--story-green);
+        }
+        
+        footer {
+            background: linear-gradient(90deg, var(--story-blue), var(--story-green));
+            color: white;
+            padding: 3rem 5%;
+            margin-top: 4rem;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo i {
+            color: var(--story-yellow);
+            margin-right: 10px;
+        }
+        
+        .footer-about p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links h3, .footer-contact h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            color: white;
+        }
+        
+        .footer-links h3::after, .footer-contact h3::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--story-yellow);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--story-yellow);
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info i {
+            color: var(--story-yellow);
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .category-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            background: var(--light-gray);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background: var(--story-blue);
+            color: white;
+        }
+        
+        .leaderboard {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid var(--story-yellow);
+        }
+        
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .rank {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--story-blue);
+            width: 50px;
+            text-align: center;
+        }
+        
+        .leaderboard-content {
+            flex: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin: 1.5rem 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem;
+            }
+            
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .player-controls {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                故事之声
+            </div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#stories">故事库</a></li>
+                <li><a href="#upload">作品上传</a></li>
+                <li><a href="#leaderboard">排行榜</a></li>
+                <li><a href="#dubbing">配音工坊</a></li>
+                <li><a href="#blindbox">故事盲盒</a></li>
+            </ul>
+            <div class="user-actions">
+                <button class="btn btn-outline"><i class="fas fa-sign-in-alt"></i>登录</button>
+                <button class="btn btn-primary"><i class="fas fa-user-plus"></i>注册</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <h1>故事之声，聆听世界</h1>
+        <p>幼儿教师口语专业故事平台 - 提升讲故事技巧，展示专业风采</p>
+        <button class="btn btn-primary" id="startStoryBtn"><i class="fas fa-microphone-alt"></i>开始讲故事</button>
+    </section>
+
+    <!-- 特色功能 -->
+    <div class="container">
+        <div class="section-title">
+            <h2>平台特色功能</h2>
+        </div>
+        
+        <div class="stories-grid">
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>故事资源库</h3>
+                <p>丰富的儿童故事音频、视频资源，包含经典童话、寓言故事和原创作品</p>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-upload"></i>
+                </div>
+                <h3>作品上传</h3>
+                <p>上传你的讲故事作品，获得专业教师的点评和同学们的鼓励</p>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>作品排行榜</h3>
+                <p>高分作品展示，互相学习优秀讲故事技巧</p>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <h3>配音工坊</h3>
+                <p>有趣的配音练习，激发你的讲故事创意</p>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h3>故事盲盒</h3>
+                <p>随机抽取故事任务，挑战不同风格的讲述方式</p>
+            </div>
+            
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>学习资源</h3>
+                <p>专业教师录制的讲故事技巧视频教程</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 故事库 -->
+    <div class="container" id="stories">
+        <div class="section-title">
+            <h2>故事资源库</h2>
+        </div>
+        
+        <div class="category-filter">
+            <button class="category-btn active">全部</button>
+            <button class="category-btn">童话故事</button>
+            <button class="category-btn">寓言故事</button>
+            <button class="category-btn">经典文学</button>
+            <button class="category-btn">原创故事</button>
+            <button class="category-btn">教学示范</button>
+        </div>
+        
+        <div class="stories-grid">
+            <!-- 故事卡片 1 -->
+            <div class="story-card">
+                <div class="story-img" style="background: linear-gradient(45deg, var(--story-blue), var(--story-green));">
+                    <div class="play-btn" data-story="三只小猪">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="story-content">
+                    <h3 class="story-title">三只小猪</h3>
+                    <div class="story-author">
+                        <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="作者头像">
+                        王老师示范
+                    </div>
+                    <p class="story-description">经典童话故事，讲述三只小猪如何用不同的材料建造房子，以及如何智斗大灰狼的故事。</p>
+                    <div class="rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-value">4.7</span>
+                        <span class="rating-count">(86次学习)</span>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-light btn-sm play-story" data-story="三只小猪"><i class="fas fa-play"></i> 播放</button>
+                        <button class="btn btn-primary btn-sm"><i class="fas fa-download"></i> 学习</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 故事卡片 2 -->
+            <div class="story-card">
+                <div class="story-img" style="background: linear-gradient(45deg, var(--story-pink), var(--story-yellow));">
+                    <div class="play-btn" data-story="小红帽">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="story-content">
+                    <h3 class="story-title">小红帽</h3>
+                    <div class="story-author">
+                        <img src="https://randomuser.me/api/portraits/women/24.jpg" alt="作者头像">
+                        李老师示范
+                    </div>
+                    <p class="story-description">经典童话故事，讲述小红帽在去看望外婆的路上遇到大灰狼的惊险经历。</p>
+                    <div class="rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-value">5.0</span>
+                        <span class="rating-count">(102次学习)</span>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-light btn-sm play-story" data-story="小红帽"><i class="fas fa-play"></i> 播放</button>
+                        <button class="btn btn-primary btn-sm"><i class="fas fa-download"></i> 学习</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 故事卡片 3 -->
+            <div class="story-card">
+                <div class="story-img" style="background: linear-gradient(45deg, var(--story-green), var(--story-blue));">
+                    <div class="play-btn" data-story="龟兔赛跑">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="story-content">
+                    <h3 class="story-title">龟兔赛跑</h3>
+                    <div class="story-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="作者头像">
+                        张老师示范
+                    </div>
+                    <p class="story-description">经典寓言故事，讲述乌龟和兔子比赛跑步，最终乌龟凭借坚持赢得比赛的故事。</p>
+                    <div class="rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="rating-value">4.2</span>
+                        <span class="rating-count">(78次学习)</span>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-light btn-sm play-story" data-story="龟兔赛跑"><i class="fas fa-play"></i> 播放</button>
+                        <button class="btn btn-primary btn-sm"><i class="fas fa-download"></i> 学习</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 排行榜 -->
+    <div class="container" id="leaderboard">
+        <div class="section-title">
+            <h2>优秀作品排行榜</h2>
+        </div>
+        
+        <div class="leaderboard">
+            <div class="leaderboard-item">
+                <div class="rank">1</div>
+                <div class="leaderboard-content">
+                    <h3>《小马过河》 - 张同学</h3>
+                    <div class="rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-value">9.8分</span>
+                        <span class="comment-time">2023年6月15日</span>
+                    </div>
+                    <div class="comment-content">
+                        教师点评：张同学的讲述生动活泼，角色区分明显，语气变化丰富，特别是小马的犹豫和老牛的沉稳表现得非常到位！
+                    </div>
+                </div>
+            </div>
+            
+            <div class="leaderboard-item">
+                <div class="rank">2</div>
+                <div class="leaderboard-content">
+                    <h3>《狼来了》 - 王同学</h3>
+                    <div class="rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="rating-value">9.5分</span>
+                        <span class="comment-time">2023年6月10日</span>
+                    </div>
+                    <div class="comment-content">
+                        教师点评：王同学的讲述很有戏剧性，特别是在表现村民的愤怒和男孩的后悔时，情感表达非常到位！
+                    </div>
+                </div>
+            </div>
+            
+            <div class="leaderboard-item">
+                <div class="rank">3</div>
+                <div class="leaderboard-content">
+                    <h3>《小猫钓鱼》 - 李同学</h3>
+                    <div class="rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="rating-value">9.2分</span>
+                        <span class="comment-time">2023年6月8日</span>
+                    </div>
+                    <div class="comment-content">
+                        教师点评：李同学讲述时表情丰富，肢体语言恰当，特别是小猫的调皮和妈妈的耐心表现得很好！
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 故事上传 -->
+    <div class="container" id="upload">
+        <div class="section-title">
+            <h2>上传你的作品</h2>
+        </div>
+        
+        <div class="upload-section">
+            <div class="form-group">
+                <label for="story-title">故事标题</label>
+                <input type="text" id="story-title" class="form-control" placeholder="给你的故事作品起个名字">
+            </div>
+            
+            <div class="form-group">
+                <label for="story-category">故事分类</label>
+                <select id="story-category" class="form-control">
+                    <option value="">选择分类</option>
+                    <option value="fairy-tale">童话故事</option>
+                    <option value="fable">寓言故事</option>
+                    <option value="original">原创故事</option>
+                    <option value="classic">经典文学</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="story-description">故事简介</label>
+                <textarea id="story-description" class="form-control" placeholder="简单介绍一下你的故事作品..." rows="4"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>上传故事作品</label>
+                <div class="file-upload" id="fileUpload">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>点击或拖拽文件到此处上传</p>
+                    <p class="text-sm">支持格式: MP3, MP4, WAV (最大文件大小: 100MB)</p>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="cover-image">作品封面 (可选)</label>
+                <input type="file" id="cover-image" class="form-control">
+            </div>
+            
+            <button class="btn btn-primary" id="publishBtn"><i class="fas fa-upload"></i> 提交作品</button>
+        </div>
+    </div>
+    
+    <!-- 配音工坊 -->
+    <div class="container" id="dubbing">
+        <div class="section-title">
+            <h2>配音工坊</h2>
+        </div>
+        
+        <div class="dubbing-section">
+            <p>选择配音片段，录制你的声音，创造属于你的故事版本！</p>
+            
+            <div class="dubbing-box">
+                <h3>《三只小猪》片段</h3>
+                <p>大灰狼角色："小猪，小猪，让我进来！"</p>
+                <p>小猪角色："不！不！不！我才不让你进来！"</p>
+                <button class="btn btn-primary"><i class="fas fa-microphone"></i> 开始配音</button>
+            </div>
+            
+            <div class="dubbing-box">
+                <h3>《小红帽》片段</h3>
+                <p>大灰狼角色："你好啊，小红帽！"</p>
+                <p>小红帽角色："你好，狼先生！"</p>
+                <button class="btn btn-primary"><i class="fas fa-microphone"></i> 开始配音</button>
+            </div>
+            
+            <div class="dubbing-box">
+                <h3>《龟兔赛跑》片段</h3>
+                <p>兔子角色："哈哈，你爬得这么慢，我睡一觉都能赢你！"</p>
+                <p>乌龟角色："坚持不懈，终会到达终点。"</p>
+                <button class="btn btn-primary"><i class="fas fa-microphone"></i> 开始配音</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 故事盲盒 -->
+    <div class="container" id="blindbox">
+        <div class="section-title">
+            <h2>故事盲盒挑战</h2>
+        </div>
+        
+        <div class="blind-box-section">
+            <p>点击下方盲盒，随机抽取一个故事任务，挑战你的讲故事能力！</p>
+            
+            <div class="blind-box" id="blindBox">
+                <i class="fas fa-gift" style="font-size: 4rem; color: var(--story-pink);"></i>
+                <h3>点击抽取故事任务</h3>
+                <p>挑战不同的故事讲述风格，提升你的专业技能！</p>
+            </div>
+            
+            <div class="story-task" id="storyTask">
+                <h4>你的故事任务：<span id="taskTitle"></span></h4>
+                <div class="story-text" id="taskText"></div>
+                
+                <div class="tips-box">
+                    <h4><i class="fas fa-lightbulb"></i> 讲述技巧指导</h4>
+                    <p id="taskTips"></p>
+                </div>
+                
+                <button class="btn btn-primary"><i class="fas fa-microphone-alt"></i> 开始练习讲述</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <i class="fas fa-book-open"></i>
+                    故事之声
+                </div>
+                <p>幼儿教师口语专业故事平台，提升学生讲故事能力，培养优秀幼儿教师。</p>
+                <p>平台提供故事资源、作品评价、配音练习和故事盲盒等功能。</p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#stories">故事资源</a></li>
+                    <li><a href="#leaderboard">作品排行榜</a></li>
+                    <li><a href="#upload">上传作品</a></li>
+                    <li><a href="#dubbing">配音工坊</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>教学资源</h3>
+                <ul>
+                    <li><a href="#">讲故事技巧</a></li>
+                    <li><a href="#">优秀教案</a></li>
+                    <li><a href="#">儿童心理学</a></li>
+                    <li><a href="#">声音训练</a></li>
+                    <li><a href="#">课堂管理</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>联系我们</h3>
+                <div class="contact-info">
+                    <i class="fas fa-user"></i>
+                    <div>幼儿保育专业教研室</div>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <div>storyvoice@edu.com</div>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>(010) 1234-5678</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2023 故事之声 - 幼儿教师口语专业故事平台
+        </div>
+    </footer>
+
+    <script>
+        // 故事盲盒数据
+        const storyTasks = [
+            {
+                title: "狼和小羊",
+                text: "故事内容：一只狼在小溪边遇到了一只小羊，狼想吃掉小羊，就故意找借口说小羊把水弄脏了。小羊辩解说自己在下游喝水，不可能弄脏上游的水。狼又找了其他借口，但都被小羊反驳了。最后狼不顾一切地扑向小羊。",
+                tips: "讲述技巧：1. 狼的声音应该低沉而狡猾；2. 小羊的声音要轻柔而天真；3. 注意表现狼的蛮横无理和小羊的弱小无助；4. 结尾处语气要表现出悲剧感。"
+            },
+            {
+                title: "咕咚来了",
+                text: "故事内容：森林里的小动物们被一声'咕咚'吓坏了，大家纷纷逃跑。兔子说是'咕咚'来了，其他动物也不知道'咕咚'是什么，就跟着跑。最后狮子带领大家回去查看，发现原来是木瓜掉进水里的声音。",
+                tips: "讲述技巧：1. 动物们的声音要有区别；2. '咕咚'的声音要夸张有趣；3. 表现从恐慌到明白真相的情绪变化；4. 狮子作为领导者的声音要稳重有力。"
+            },
+            {
+                title: "猴吃西瓜",
+                text: "故事内容：一群猴子得到一个大西瓜，但不知道该怎么吃。老猴子说吃瓜瓤，小猴子说吃瓜皮，争论不休。最后他们决定各吃各的，结果吃瓜瓤的猴子觉得甜，吃瓜皮的觉得苦。",
+                tips: "讲述技巧：1. 老猴子声音要苍老而自信；2. 小猴子声音要稚嫩而好奇；3. 表现猴子们的争论场景；4. 结尾处语气要有教育意义。"
+            },
+            {
+                title: "一头学问渊博的猪",
+                text: "故事内容：一头自认为学问渊博的猪，对森林里的各种现象发表高见，但实际上它的解释都是错误的。其他动物指出它的错误，但它总是找借口辩解。最后它掉进泥潭，还在泥潭里发表对泥潭的'高见'。",
+                tips: "讲述技巧：1. 猪的声音要自大而傲慢；2. 其他动物的声音要有各自的特色；3. 表现猪的固执和可笑；4. 结尾处语气要幽默讽刺。"
+            }
+        ];
+        
+        // 盲盒点击事件
+        document.getElementById('blindBox').addEventListener('click', function() {
+            const taskContainer = document.getElementById('storyTask');
+            const taskTitle = document.getElementById('taskTitle');
+            const taskText = document.getElementById('taskText');
+            const taskTips = document.getElementById('taskTips');
+            
+            // 随机选择一个故事任务
+            const randomTask = storyTasks[Math.floor(Math.random() * storyTasks.length)];
+            
+            taskTitle.textContent = randomTask.title;
+            taskText.innerHTML = `<p>${randomTask.text}</p>`;
+            taskTips.innerHTML = randomTask.tips;
+            
+            taskContainer.style.display = 'block';
+            
+            // 滚动到任务位置
+            taskContainer.scrollIntoView({behavior: 'smooth'});
+        });
+        
+        // 播放故事功能
+        document.querySelectorAll('.play-btn, .play-story').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const storyTitle = this.getAttribute('data-story') || "精彩故事";
+                alert(`开始播放: ${storyTitle}`);
+            });
+        });
+        
+        // 文件上传区域交互效果
+        const fileUpload = document.getElementById('fileUpload');
+        fileUpload.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.borderColor = 'var(--story-blue)';
+            this.style.backgroundColor = 'rgba(78, 154, 241, 0.05)';
+        });
+        
+        fileUpload.addEventListener('dragleave', function() {
+            this.style.borderColor = 'var(--light-gray)';
+            this.style.backgroundColor = 'transparent';
+        });
+        
+        fileUpload.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.borderColor = 'var(--story-blue)';
+            this.style.backgroundColor = 'rgba(78, 154, 241, 0.05)';
+            alert('作品已准备上传！');
+        });
+        
+        fileUpload.addEventListener('click', function() {
+            alert('请选择故事作品文件上传');
+        });
+        
+        // 分类筛选功能
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        
+        // 发布故事功能
+        document.getElementById('publishBtn').addEventListener('click', function() {
+            const title = document.getElementById('story-title').value;
+            const category = document.getElementById('story-category').value;
+            
+            if (!title || !category) {
+                alert('请填写故事标题并选择分类！');
+                return;
+            }
+            
+            alert(`作品 "${title}" 上传成功！等待教师评价。`);
+        });
+        
+        // 开始创作故事按钮
+        document.getElementById('startStoryBtn').addEventListener('click', function() {
+            document.getElementById('upload').scrollIntoView({behavior: 'smooth'});
+        });
+    </script>
+</body>
+</html>
